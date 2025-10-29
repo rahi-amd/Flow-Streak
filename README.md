@@ -1,4 +1,4 @@
-# 🔥 Flow-Streak
+# Flow-Streak
 
 **For every serial procrastinator who needs 47 tries to finish one task.**
 
@@ -20,14 +20,14 @@ This app is for everyone who:
 
 ---
 
-## ✨ Features
+##  Features
 
-### 🏠 **Home Tab: Your Shame (But Pretty)**
+### **Home Tab: Your Shame (But Pretty)**
 - **GitHub-style contribution calendar** - Watch your procrastination patterns emerge
 - **Streak counter** - How many days in a row you've *tried*?
 - **Daily stats** - Minutes focused, sessions completed (we don't ask what happened in between)
 
-### ⏱️ **Timer Tab: Actually Do The Thing**
+###  **Timer Tab: Actually Do The Thing**
 - **Pomodoro-style focus timer** (25 min default, but we won't judge your 15-min sessions)
 - **Quick start buttons**: 15 / 25 / 45 min presets
 - **Vibration on completion** - Celebrate every small win
@@ -41,9 +41,9 @@ This app is for everyone who:
 
 ---
 
-## 🎯 Philosophy
+##  Philosophy
 
-**Traditional productivity apps**: "MAXIMIZE YOUR OUTPUT! CRUSH YOUR GOALS! 🚀💪"
+**Traditional productivity apps**: "MAXIMIZE YOUR OUTPUT! CRUSH YOUR GOALS! 
 
 **FlowStreak**: "Hey, you focused for 25 minutes today. That's 25 more than yesterday. Nice."
 
@@ -55,7 +55,7 @@ We believe in:
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 Built with:
 - **React Native + Expo** - Because we're lazy (efficient)
@@ -65,7 +65,7 @@ Built with:
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Found a bug? Have an idea? Procrastinating on your actual work?
 
@@ -77,9 +77,8 @@ I promise to review it... eventually. (I'm working on it, okay?)
 
 ## 💡 Why This Exists
 
-I spent 3 years trying to "fix" my work habits. Tried every app. Every technique. Every productivity YouTuber's advice.
+I spent years trying to "fix" my work habits. 
 
-Then I realized: **I don't need to fix myself. I need to work WITH how my brain actually works.**
 
 Some days I hyperfocus for 4 hours. Some days I get 3 x 15-minute bursts. Both are valid.
 
