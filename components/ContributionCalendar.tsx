@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Dimensions, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { colors, spacing } from '../theme';
 
 interface CalendarDay {
@@ -215,19 +214,6 @@ export const ContributionCalendar: React.FC<ContributionCalendarProps> = ({ data
     }
   };
 
-  // Swipe gesture for month navigation
-  const swipeGesture = Gesture.Pan()
-    .onEnd((event) => {
-      // Swipe left = next month
-      if (event.velocityX < -500 && monthOffset < 12) {
-        setMonthOffset(monthOffset + 1);
-      }
-      // Swipe right = previous month
-      else if (event.velocityX > 500 && monthOffset > -12) {
-        setMonthOffset(monthOffset - 1);
-      }
-    });
-
   const weeks = generateMonthGrid(monthOffset);
   const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -267,38 +253,34 @@ export const ContributionCalendar: React.FC<ContributionCalendarProps> = ({ data
         ))}
       </View>
 
-      {/* Calendar Grid with Swipe Gesture */}
-      <GestureDetector gesture={swipeGesture}>
-        <View style={styles.calendarGrid}>
-          {weeks.map((week, weekIndex) => (
-            <View key={weekIndex} style={styles.weekRow}>
-              {week.map((day, dayIndex) => (
-                <TouchableOpacity
-                  key={`${weekIndex}-${dayIndex}`}
-                  style={[
-                    styles.dayCell,
-                    { 
-                      backgroundColor: getColorForLevel(day.level, day.isCurrentMonth, day.isFutureDate),
-                      opacity: (!day.isCurrentMonth || day.isFutureDate) ? 0.35 : 1,
-                    }
-                  ]}
-                  onPress={() => handleDayPress(day)}
-                  activeOpacity={0.7}
-                >
-                  <Text style={[
-                    styles.dayNumber,
-                    { opacity: (!day.isCurrentMonth || day.isFutureDate) ? 0.5 : 1 }
-                  ]}>
-                    {day.dayNumber}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          ))}
-        </View>
-      </GestureDetector>
-
-  
+      {/* Calendar Grid - Navigation via buttons only */}
+      <View style={styles.calendarGrid}>
+        {weeks.map((week, weekIndex) => (
+          <View key={weekIndex} style={styles.weekRow}>
+            {week.map((day, dayIndex) => (
+              <TouchableOpacity
+                key={`${weekIndex}-${dayIndex}`}
+                style={[
+                  styles.dayCell,
+                  { 
+                    backgroundColor: getColorForLevel(day.level, day.isCurrentMonth, day.isFutureDate),
+                    opacity: (!day.isCurrentMonth || day.isFutureDate) ? 0.35 : 1,
+                  }
+                ]}
+                onPress={() => handleDayPress(day)}
+                activeOpacity={0.7}
+              >
+                <Text style={[
+                  styles.dayNumber,
+                  { opacity: (!day.isCurrentMonth || day.isFutureDate) ? 0.5 : 1 }
+                ]}>
+                  {day.dayNumber}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        ))}
+      </View>
 
       {/* Legend */}
       <View style={styles.legend}>
@@ -450,13 +432,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: colors.light.text,
-  },
-  swipeHint: {
-    fontSize: 11,
-    color: colors.light.textSecondary,
-    textAlign: 'center',
-    marginTop: spacing.sm,
-    fontStyle: 'italic',
   },
   legend: {
     flexDirection: 'row',

@@ -211,6 +211,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.xl,
+    paddingBottom: spacing.xxl + spacing.md, 
+
   },
   title: {
     marginBottom: spacing.xl,

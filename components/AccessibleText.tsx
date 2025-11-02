@@ -1,40 +1,92 @@
 import React from 'react';
-import { StyleSheet, Text, TextProps, TextStyle } from 'react-native';
-import { ColorKey, colors, FontWeight, typography } from '../theme';
+import { StyleSheet, Text, TextStyle } from 'react-native';
+import { colors, typography } from '../theme';
 
-interface AccessibleTextProps extends TextProps {
+type TextVariant = 'heading' | 'title' | 'body' | 'caption';
+type TextWeight = 'regular' | 'medium' | 'semibold' | 'bold';
+type TextColor = 'text' | 'textSecondary' | 'primary';
+type TextAlign = 'left' | 'center' | 'right';
+
+interface AccessibleTextProps {
   children: React.ReactNode;
-  variant?: 'title' | 'heading' | 'body' | 'caption';
-  color?: ColorKey;
-  weight?: FontWeight;
-  align?: 'left' | 'center' | 'right';
-  accessibilityLabel?: string;
+  variant?: TextVariant;
+  weight?: TextWeight;
+  color?: TextColor;
+  align?: TextAlign;
+  style?: TextStyle;
 }
 
 export const AccessibleText: React.FC<AccessibleTextProps> = ({
   children,
   variant = 'body',
-  color = 'text',
   weight = 'regular',
+  color = 'text',
   align = 'left',
-  accessibilityLabel,
   style,
-  ...props
 }) => {
+  const getVariantStyle = (): TextStyle => {
+    switch (variant) {
+      case 'heading':
+        return {
+          fontSize: typography.sizes.xxxl,
+          fontWeight: typography.weights.bold,
+          fontFamily: typography.fonts.heading, // Manga font!
+        };
+      case 'title':
+        return {
+          fontSize: typography.sizes.xxl,
+          fontWeight: typography.weights.bold,
+          fontFamily: typography.fonts.heading, // Manga font!
+        };
+      case 'body':
+        return {
+          fontSize: typography.sizes.md,
+          fontWeight: typography.weights.regular,
+          fontFamily: typography.fonts.body, // System font for readability
+        };
+      case 'caption':
+        return {
+          fontSize: typography.sizes.xs,
+          fontWeight: typography.weights.regular,
+          fontFamily: typography.fonts.body,
+        };
+    }
+  };
+
+  const getColorStyle = (): TextStyle => {
+    switch (color) {
+      case 'text':
+        return { color: colors.light.text };
+      case 'textSecondary':
+        return { color: colors.light.textSecondary };
+      case 'primary':
+        return { color: colors.light.primary };
+    }
+  };
+
+  const getAlignStyle = (): TextStyle => {
+    return { textAlign: align };
+  };
+
+  const getWeightStyle = (): TextStyle => {
+    // Only apply fontWeight for body text (not headings with custom font)
+    if (variant === 'body' || variant === 'caption') {
+      return { fontWeight: typography.weights[weight] };
+    }
+    return {};
+  };
+
   return (
     <Text
-      accessible={true}
-      accessibilityLabel={accessibilityLabel || (typeof children === 'string' ? children : undefined)}
-      accessibilityRole="text"
       style={[
-        styles.text,
-        styles[`text_${variant}`],
-        { color: colors.light[color] || colors.light.text },
-        { fontWeight: typography.weights[weight] },
-        { textAlign: align },
+        styles.base,
+        getVariantStyle(),
+        getColorStyle(),
+        getAlignStyle(),
+        getWeightStyle(),
         style,
       ]}
-      {...props}
+      accessibilityRole="text"
     >
       {children}
     </Text>
@@ -42,27 +94,7 @@ export const AccessibleText: React.FC<AccessibleTextProps> = ({
 };
 
 const styles = StyleSheet.create({
-  text: {
+  base: {
     color: colors.light.text,
-  } as TextStyle,
-  text_title: {
-    fontSize: typography.sizes.huge,
-    fontWeight: typography.weights.bold,
-    lineHeight: typography.sizes.huge * typography.lineHeights.tight,
-  } as TextStyle,
-  text_heading: {
-    fontSize: typography.sizes.xxl,
-    fontWeight: typography.weights.semibold,
-    lineHeight: typography.sizes.xxl * typography.lineHeights.normal,
-  } as TextStyle,
-  text_body: {
-    fontSize: typography.sizes.base,
-    fontWeight: typography.weights.regular,
-    lineHeight: typography.sizes.base * typography.lineHeights.normal,
-  } as TextStyle,
-  text_caption: {
-    fontSize: typography.sizes.sm,
-    fontWeight: typography.weights.regular,
-    lineHeight: typography.sizes.sm * typography.lineHeights.relaxed,
-  } as TextStyle,
+  },
 });
