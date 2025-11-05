@@ -34,21 +34,21 @@ export default function Layout() {
           tabBarInactiveTintColor: colors.light.textSecondary,
           headerShown: false,
           tabBarStyle: {
-            height: 60, // Reduced from 60 for compact design
-           paddingBottom: 0, // Remove bottom padding to shift content up
-           paddingTop: 0, // Remove top padding to eliminate space above border
-           marginBottom: spacing.md, // 16px (0.5cm) lift from bottom
-           borderTopWidth: 1,
-           borderTopColor: colors.light.border,
-          backgroundColor: colors.light.background,
-          position: 'absolute', // Position absolutely to control placement
-           bottom: spacing.md, // Lift 16px from bottom
+            height: 50, // Reduced from 60 for compact design
+            paddingBottom: 0, // Remove bottom padding to shift content up
+            paddingTop: 0, // Remove top padding to eliminate space above border
+            marginBottom: spacing.md, // 16px (0.5cm) lift from bottom
+            borderTopWidth: 1,
+            borderTopColor: colors.light.border,
+            backgroundColor: colors.light.background,
+            position: 'absolute', // Position absolutely to control placement
+            bottom: spacing.md, // Lift 16px from bottom
             left: 0,
             right: 0,
           },
           tabBarLabelStyle: {
-            fontSize: 13, // Smaller font for compact design
-            fontWeight: '500',
+            fontSize: 10, // Smaller font for compact design
+            fontWeight: '600',
             marginTop: 2, // Tighter spacing
           },
         }}
@@ -61,8 +61,25 @@ export default function Layout() {
               <Image
                 source={require('../assets/icons/home-icon.png')}
                 style={{
-                  width: 35, // Reduced from 35 for compact design
-                  height: 35,
+                  width: 28,
+                  height: 28,
+                  tintColor: color,
+                }}
+                resizeMode="contain"
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="activity"
+          options={{
+            title: 'Activity',
+            tabBarIcon: ({ focused, color }) => (
+              <Image
+                source={require('../assets/icons/calendar-icon.png')}
+                style={{
+                  width: 28,
+                  height: 28,
                   tintColor: color,
                 }}
                 resizeMode="contain"
@@ -78,8 +95,8 @@ export default function Layout() {
               <Image
                 source={require('../assets/icons/timer-icon.png')}
                 style={{
-                  width: 35, // Reduced from 35 for compact design
-                  height: 35,
+                  width: 28,
+                  height: 28,
                   tintColor: color,
                 }}
                 resizeMode="contain"

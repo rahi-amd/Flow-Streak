@@ -67,20 +67,28 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     minHeight: spacing.recommendedTouchTarget,
     minWidth: spacing.recommendedTouchTarget,
+    // Manga-style bold borders
+    borderWidth: 2.5,
+    // Manga-style hard shadow (no blur)
+    shadowColor: '#000',
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 0,
+    elevation: 3,
   } as ViewStyle,
   
   button_primary: {
     backgroundColor: colors.light.primary,
+    borderColor: 'rgba(0, 0, 0, 0.3)',
   } as ViewStyle,
   button_secondary: {
     backgroundColor: colors.light.surface,
-    borderWidth: 2,
-    borderColor: colors.light.border,
+    borderColor: 'rgba(0, 0, 0, 0.25)',
   } as ViewStyle,
   button_outline: {
     backgroundColor: 'transparent',
-    borderWidth: 2,
     borderColor: colors.light.primary,
+    borderWidth: 2.5,
   } as ViewStyle,
   
   button_large: {
@@ -101,8 +109,14 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   
   buttonText: {
-    fontWeight: typography.weights.semibold,
+    fontWeight: typography.weights.bold, // Changed to bold for manga emphasis
     textAlign: 'center',
+    textTransform: 'uppercase', // Manga style: ALL CAPS
+    letterSpacing: 1, // Slightly spaced for impact
+    // Text shadow for depth
+    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 0,
   } as TextStyle,
   buttonText_primary: {
     color: '#FFFFFF',
@@ -115,6 +129,7 @@ const styles = StyleSheet.create({
   buttonText_outline: {
     color: colors.light.primary,
     fontSize: typography.sizes.lg,
+    fontWeight: typography.weights.bold,
   } as TextStyle,
   buttonText_large: {
     fontSize: typography.sizes.xl,
